@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/ChangesControl.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Resources/SemiBoldFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Resources/PrintBoxFont.tres" type="DynamicFont" id=3]
+
+[node name="ChangesControl" type="Control"]
+margin_right = 379.0
+margin_bottom = 495.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChangesContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChangesContainer"]
+margin_right = 379.0
+margin_bottom = 495.0
+
+[node name="ChangesLabel" type="Label" parent="ChangesContainer/VBoxContainer"]
+margin_right = 379.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 0, 23 )
+custom_fonts/font = ExtResource( 2 )
+text = "Current Budget Analysis"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PrintBox" type="MarginContainer" parent="ChangesContainer/VBoxContainer"]
+self_modulate = Color( 0.411765, 0.411765, 0.411765, 0.866667 )
+margin_top = 27.0
+margin_right = 379.0
+margin_bottom = 495.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PrintBoxOut" type="ColorRect" parent="ChangesContainer/VBoxContainer/PrintBox"]
+margin_right = 379.0
+margin_bottom = 468.0
+color = Color( 0.0431373, 0.0431373, 0.0431373, 0.929412 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PrintBoxIn" type="ColorRect" parent="ChangesContainer/VBoxContainer/PrintBox/PrintBoxOut"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 8.0
+margin_right = -10.0
+margin_bottom = -10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color( 0.12549, 0.117647, 0.117647, 0.745098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PrintBoxText" type="RichTextLabel" parent="ChangesContainer/VBoxContainer/PrintBox/PrintBoxOut/PrintBoxIn" groups=[
+"print_box",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 8.0
+margin_right = -10.0
+margin_bottom = -10.0
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "Lorem ipsum"
+text = "Lorem ipsum"
+__meta__ = {
+"_edit_use_anchors_": false
+}

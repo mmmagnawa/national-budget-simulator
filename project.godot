@@ -1,0 +1,53 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+[application]
+
+config/name="NationalBudgetSimulator"
+config/description="Simulates the Philippine National Budget. Made for STS 1 THY-2."
+run/main_scene="res://Scenes/Main.tscn"
+boot_splash/image="res://Assets/splash.png"
+boot_splash/bg_color=Color( 0.0862745, 0.0941176, 0.0980392, 1 )
+config/icon="res://Assets/Icons/icon.svg"
+config/windows_native_icon="res://Assets/Icons/icon.ico"
+
+[autoload]
+
+DictData="*res://Scripts/Dictionary.gd"
+
+[debug]
+
+shapes/collision/contact_color=Color( 0.101961, 0.682353, 1, 0.8 )
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/size/resizable=false
+window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
+environment/default_clear_color=Color( 0.0862745, 0.0941176, 0.0980392, 1 )
+environment/default_environment="res://default_env.tres"

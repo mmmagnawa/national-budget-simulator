@@ -1,0 +1,221 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/MiscControls.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/ResetButton.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Resources/RegularFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Resources/SemiBoldFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Scripts/AboutButton.gd" type="Script" id=6]
+
+[node name="MiscControls" type="Control"]
+margin_right = 298.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 298, 168 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MiscContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PercentageContainer" type="VBoxContainer" parent="MiscContainer"]
+margin_right = 284.0
+margin_bottom = 101.0
+size_flags_stretch_ratio = 0.06
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PercentBox" type="CheckBox" parent="MiscContainer/PercentageContainer"]
+margin_right = 284.0
+margin_bottom = 31.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 3 )
+text = "Show as percentages"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PieRotateBox" type="CheckBox" parent="MiscContainer/PercentageContainer"]
+margin_top = 35.0
+margin_right = 284.0
+margin_bottom = 66.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 3 )
+pressed = true
+text = "Enable rotation"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MiscContainer/PercentageContainer"]
+margin_top = 70.0
+margin_right = 284.0
+margin_bottom = 101.0
+
+[node name="PaletteBox" type="CheckBox" parent="MiscContainer/PercentageContainer/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+focus_mode = 0
+custom_fonts/font = ExtResource( 3 )
+pressed = true
+text = "Fixed colors"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RandomizerButton" type="Button" parent="MiscContainer/PercentageContainer/HBoxContainer" groups=[
+"randomizer",
+]]
+visible = false
+margin_left = 144.0
+margin_right = 284.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+focus_mode = 0
+custom_fonts/font = ExtResource( 3 )
+text = "Randomize color"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MiscContainer"]
+margin_top = 105.0
+margin_right = 284.0
+margin_bottom = 167.0
+size_flags_horizontal = 0
+
+[node name="ButtonContainer" type="GridContainer" parent="MiscContainer/MarginContainer"]
+margin_right = 284.0
+margin_bottom = 62.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2021Button" type="Button" parent="MiscContainer/MarginContainer/ButtonContainer"]
+margin_right = 140.0
+margin_bottom = 29.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 3 )
+text = "Use 2021 budget"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DistributeButton" type="Button" parent="MiscContainer/MarginContainer/ButtonContainer"]
+margin_left = 144.0
+margin_right = 284.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 3 )
+text = "Evenly distribute"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetButton" type="Button" parent="MiscContainer/MarginContainer/ButtonContainer"]
+margin_top = 33.0
+margin_right = 140.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 140, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "Reset simulation"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmReset" type="ConfirmationDialog" parent="MiscContainer/MarginContainer/ButtonContainer/ResetButton"]
+self_modulate = Color( 1, 1, 1, 0.901961 )
+anchor_left = 0.671
+anchor_top = 1.75
+anchor_right = 0.671
+anchor_bottom = 1.75
+margin_left = -7.62939e-06
+margin_top = 7.62939e-06
+margin_right = 213.0
+margin_bottom = 70.0
+window_title = "Reset this instance?"
+dialog_text = "Doing so will undo all changes."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutButton" type="Button" parent="MiscContainer/MarginContainer/ButtonContainer"]
+margin_left = 144.0
+margin_top = 33.0
+margin_right = 284.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 140, 0 )
+focus_mode = 0
+custom_fonts/font = ExtResource( 3 )
+text = "About..."
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutDialog" type="AcceptDialog" parent="MiscContainer/MarginContainer/ButtonContainer/AboutButton"]
+self_modulate = Color( 1, 1, 1, 0.901961 )
+anchor_left = 1.599
+anchor_top = 0.696
+anchor_right = 1.599
+anchor_bottom = 0.696
+margin_left = -249.037
+margin_top = -160.0
+margin_right = 248.963
+margin_bottom = 160.0
+rect_pivot_offset = Vector2( 249, 160 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+window_title = "About"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MiscContainer/MarginContainer/ButtonContainer/AboutButton/AboutDialog"]
+anchor_top = -0.00324357
+anchor_bottom = -0.00324357
+margin_left = 8.0
+margin_top = 9.03794
+margin_right = 490.0
+margin_bottom = 285.038
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/bold_font = ExtResource( 5 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[b]NationalBudgetSimulator[/b] is a demo for a project made for STS-1 THY2. This was made and written using the Godot 3.2.2 engine, a free and open-source game development engine which can be found [color=aqua][url=https://godotengine.org/]here[/url][/color].
+[center][img]res://Assets/godot.png[/img][/center]
+The project's source code can be found [color=aqua][url=https://github.com/mmmagnawa/national-budget-simulator]here[/url][/color].
+
+NationalBudgetSimulator v1.0
+Group 3: Civico | Ko | Magnawa | Pangalangan | Sta. Mina"
+text = "NationalBudgetSimulator is a demo for a project made for STS-1 THY2. This was made and written using the Godot 3.2.2 engine, a free and open-source game development engine which can be found here.
+
+The project's source code can be found here.
+
+NationalBudgetSimulator v1.0
+Group 3: Civico | Ko | Magnawa | Pangalangan | Sta. Mina"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="toggled" from="MiscContainer/PercentageContainer/PercentBox" to="." method="_on_PercentBox_toggled"]
+[connection signal="toggled" from="MiscContainer/PercentageContainer/PieRotateBox" to="." method="_on_PieRotateBox_toggled"]
+[connection signal="toggled" from="MiscContainer/PercentageContainer/HBoxContainer/PaletteBox" to="." method="_on_PaletteBox_toggled"]
+[connection signal="pressed" from="MiscContainer/PercentageContainer/HBoxContainer/RandomizerButton" to="." method="_on_RandomizerButton_pressed"]
+[connection signal="pressed" from="MiscContainer/MarginContainer/ButtonContainer/2021Button" to="." method="_on_2021Button_pressed"]
+[connection signal="pressed" from="MiscContainer/MarginContainer/ButtonContainer/DistributeButton" to="." method="_on_DistributeButton_pressed"]
+[connection signal="pressed" from="MiscContainer/MarginContainer/ButtonContainer/ResetButton" to="MiscContainer/MarginContainer/ButtonContainer/ResetButton" method="_on_ResetButton_pressed"]
+[connection signal="confirmed" from="MiscContainer/MarginContainer/ButtonContainer/ResetButton/ConfirmReset" to="MiscContainer/MarginContainer/ButtonContainer/ResetButton" method="_on_ConfirmReset_confirmed"]
+[connection signal="pressed" from="MiscContainer/MarginContainer/ButtonContainer/AboutButton" to="MiscContainer/MarginContainer/ButtonContainer/AboutButton" method="_on_AboutButton_pressed"]
+[connection signal="meta_clicked" from="MiscContainer/MarginContainer/ButtonContainer/AboutButton/AboutDialog/RichTextLabel" to="MiscContainer/MarginContainer/ButtonContainer/AboutButton" method="_on_RichTextLabel_meta_clicked"]

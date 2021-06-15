@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/SliderController.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/PieChart.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
+[ext_resource path="res://Assets/circle.svg" type="Texture" id=4]
+[ext_resource path="res://Scenes/MiscControls.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/ChangesControl.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Resources/TitleFont.tres" type="DynamicFont" id=7]
+
+[node name="Main" type="Node"]
+script = ExtResource( 3 )
+
+[node name="MainContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_right = -30.0
+margin_bottom = -40.0
+rect_clip_content = true
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Contentcontainer" type="VBoxContainer" parent="MainContainer"]
+margin_right = 1220.0
+margin_bottom = 693.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="MainContainer/Contentcontainer"]
+margin_right = 1220.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+custom_fonts/font = ExtResource( 7 )
+text = "NATIONAL BUDGET SIMULATOR"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UIContainer" type="HBoxContainer" parent="MainContainer/Contentcontainer"]
+margin_top = 68.0
+margin_right = 1220.0
+margin_bottom = 693.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftSideContainer" type="VBoxContainer" parent="MainContainer/Contentcontainer/UIContainer"]
+margin_right = 298.0
+margin_bottom = 625.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="SliderController" parent="MainContainer/Contentcontainer/UIContainer/LeftSideContainer" instance=ExtResource( 1 )]
+margin_right = 298.0
+margin_bottom = 420.0
+rect_min_size = Vector2( 0, 420 )
+
+[node name="BlankControl" type="Control" parent="MainContainer/Contentcontainer/UIContainer/LeftSideContainer"]
+margin_top = 424.0
+margin_right = 298.0
+margin_bottom = 453.0
+size_flags_vertical = 3
+
+[node name="MiscControls" parent="MainContainer/Contentcontainer/UIContainer/LeftSideContainer" instance=ExtResource( 5 )]
+margin_top = 457.0
+margin_bottom = 625.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PieContainer" type="Control" parent="MainContainer/Contentcontainer/UIContainer"]
+margin_left = 302.0
+margin_right = 836.0
+margin_bottom = 625.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PieChart" type="Control" parent="MainContainer/Contentcontainer/UIContainer/PieContainer"]
+anchor_left = 0.57
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -200.0
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 400, 400 )
+rect_pivot_offset = Vector2( 200, 200 )
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="MainContainer/Contentcontainer/UIContainer/PieContainer/PieChart"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 200, 200 )
+scale = Vector2( 1.05, 1.05 )
+texture = ExtResource( 4 )
+
+[node name="ChangesContainer" type="MarginContainer" parent="MainContainer/Contentcontainer/UIContainer"]
+margin_left = 840.0
+margin_right = 1220.0
+margin_bottom = 625.0
+rect_min_size = Vector2( 380, 625 )
+
+[node name="ChangesControl" parent="MainContainer/Contentcontainer/UIContainer/ChangesContainer" instance=ExtResource( 6 )]
+margin_right = 380.0
+margin_bottom = 625.0
+rect_min_size = Vector2( 350, 0 )
+size_flags_vertical = 3
+
+[connection signal="chart_change" from="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/SliderController" to="MainContainer/Contentcontainer/UIContainer/PieContainer/PieChart" method="_on_SliderController_chart_change"]
+[connection signal="chart_change" from="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/SliderController" to="MainContainer/Contentcontainer/UIContainer/ChangesContainer/ChangesControl" method="_on_SliderController_chart_change"]
+[connection signal="baseline" from="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/MiscControls" to="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/SliderController" method="_on_MiscControls_baseline"]
+[connection signal="distribute" from="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/MiscControls" to="MainContainer/Contentcontainer/UIContainer/PieContainer/PieChart" method="_on_MiscControls_distribute"]
+[connection signal="enable_percentage" from="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/MiscControls" to="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/SliderController" method="_on_MiscControls_enable_percentage"]
+[connection signal="enable_rotation" from="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/MiscControls" to="MainContainer/Contentcontainer/UIContainer/PieContainer/PieChart" method="_on_MiscControls_enable_rotation"]
+[connection signal="fixed_palette" from="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/MiscControls" to="MainContainer/Contentcontainer/UIContainer/PieContainer/PieChart" method="_on_MiscControls_fixed_palette"]
+[connection signal="color_changed" from="MainContainer/Contentcontainer/UIContainer/PieContainer/PieChart" to="MainContainer/Contentcontainer/UIContainer/LeftSideContainer/SliderController" method="_on_PieChart_color_changed"]
